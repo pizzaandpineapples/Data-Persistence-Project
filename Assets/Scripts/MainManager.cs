@@ -18,7 +18,6 @@ public class MainManager : MonoBehaviour
     
     private bool m_Started = false;
     private int m_Points;
-    private int m_HighPoints = 0; // High Score
 
     private bool m_GameOver = false;
 
@@ -86,21 +85,22 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (Instance != null)
-        {
-            SetHighScore(Instance.m_Points);
-        }
+        SetHighScore(m_Points);
 
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
     void SetHighScore(int point)
     {
-        if (point > m_HighPoints)
+        Debug.Log("Current score: " + point);
+        Debug.Log("Current highscore: " + PlayerPrefs.GetInt("highscore"));
+
+        if (point > PlayerPrefs.GetInt("highscore"))
         {
-            m_HighPoints = point;
+            Debug.Log("New highscore: " + point);
             PlayerPrefs.SetInt("highscore", point);
             PlayerPrefs.Save();
+            Debug.Log("Playerref highscore: " + PlayerPrefs.GetInt("highscore"));
         }
     }
 }
