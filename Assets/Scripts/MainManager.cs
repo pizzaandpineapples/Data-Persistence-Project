@@ -19,8 +19,7 @@ public class MainManager : MonoBehaviour
     private bool m_Started = false;
     private int m_Points;
     private int m_HighPoints = 0; // High Score
-    public string NameField;
-    
+
     private bool m_GameOver = false;
 
     private void Awake()
@@ -51,6 +50,8 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+
+        HighScoreText.text = "Best Score : " + PlayerPrefs.GetString("username") + " : " + PlayerPrefs.GetInt("highscore");
     }
 
     private void Update()
@@ -85,8 +86,6 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
-        Instance.m_Points = m_Points;
-        
         if (Instance != null)
         {
             SetHighScore(Instance.m_Points);
@@ -99,8 +98,9 @@ public class MainManager : MonoBehaviour
     {
         if (point > m_HighPoints)
         {
-            Instance.m_HighPoints = point;
-            Instance.HighScoreText.text = $"Best Score : Name : {m_HighPoints}";
+            m_HighPoints = point;
+            PlayerPrefs.SetInt("highscore", point);
+            PlayerPrefs.Save();
         }
     }
 }

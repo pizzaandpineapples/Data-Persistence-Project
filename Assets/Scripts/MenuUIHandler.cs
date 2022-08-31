@@ -14,7 +14,6 @@ using UnityEditor;
 public class MenuUIHandler : MonoBehaviour
 {
     public TMP_Text HighScoreText;
-    public TMP_InputField NameField;
 
     void Start()
     {
@@ -34,8 +33,9 @@ public class MenuUIHandler : MonoBehaviour
     public void SetName(string username)
     {
         HighScoreText.text = "High Score: " + username;
-        PlayerPrefs.SetString("username", name);
+        PlayerPrefs.SetString("username", username);
         PlayerPrefs.Save();
+        Debug.Log(PlayerPrefs.GetString("username"));
     }
 
     public void Exit()
