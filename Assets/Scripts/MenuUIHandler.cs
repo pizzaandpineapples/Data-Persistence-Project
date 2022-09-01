@@ -30,17 +30,31 @@ public class MenuUIHandler : MonoBehaviour
         HighScoreText.text = "High Score: " + name;
     }
 
-    public void SetName(string username)
+    public void SetName(string name)
     {
-        if (PlayerPrefs.GetString("username") != username)
+        if (PlayerPrefs.GetString("username") != name)
         {
-            PlayerPrefs.SetInt("highscore", 0);
+            PlayerPrefs.SetString("username1", name);
+            PlayerPrefs.Save();
+            Debug.Log("username1: " + PlayerPrefs.GetString("username1"));
         }
+        else
+        {
+            // PlayerPrefs.SetString("username", name);
+            // PlayerPrefs.Save();
+            Debug.Log("username: " + PlayerPrefs.GetString("username"));
+        }
+    }
 
-        HighScoreText.text = "High Score: " + username;
-        PlayerPrefs.SetString("username", username);
+    public void ClearPrefs()
+    {
+        PlayerPrefs.SetString("username", null);
+        PlayerPrefs.SetString("username1", null);
+        PlayerPrefs.SetInt("highscore", 0);
+        PlayerPrefs.SetInt("currentscore", 0);
         PlayerPrefs.Save();
-        Debug.Log(PlayerPrefs.GetString("username"));
+        Debug.Log(PlayerPrefs.GetString("username") + " " + PlayerPrefs.GetString("username1") + " " + PlayerPrefs.GetInt("highscore") + " " + PlayerPrefs.GetInt("highscore"));
+
     }
 
     public void Exit()

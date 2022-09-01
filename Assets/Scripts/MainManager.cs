@@ -50,7 +50,17 @@ public class MainManager : MonoBehaviour
             }
         }
 
-        HighScoreText.text = "Best Score : " + PlayerPrefs.GetString("username") + " : " + PlayerPrefs.GetInt("highscore");
+        if (PlayerPrefs.GetInt("currentscore") > PlayerPrefs.GetInt("highscore"))
+        {
+            HighScoreText.text = "Best Score : " + PlayerPrefs.GetString("username1") + " : " + PlayerPrefs.GetInt("currentscore");
+            PlayerPrefs.SetString("username", PlayerPrefs.GetString("username1"));
+            PlayerPrefs.SetInt("highscore", PlayerPrefs.GetInt("currentscore"));
+        }
+        else
+        {
+            HighScoreText.text = "Best Score : " + PlayerPrefs.GetString("username") + " : " + PlayerPrefs.GetInt("highscore");
+        }
+        
     }
 
     private void Update()
@@ -90,17 +100,22 @@ public class MainManager : MonoBehaviour
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
-    void SetHighScore(int point)
+    void SetHighScore(int points)
     {
-        Debug.Log("Current score: " + point);
-        Debug.Log("Current highscore: " + PlayerPrefs.GetInt("highscore"));
+        // Debug.Log("Current score: " + point);
+        // Debug.Log("Current highscore: " + PlayerPrefs.GetInt("highscore"));
 
-        if (point > PlayerPrefs.GetInt("highscore"))
+
+        if (PlayerPrefs.GetInt("highscore") != points)
         {
-            Debug.Log("New highscore: " + point);
-            PlayerPrefs.SetInt("highscore", point);
+            // Debug.Log("New highscore: " + point);
+            PlayerPrefs.SetInt("currentscore", points);
             PlayerPrefs.Save();
-            Debug.Log("Playerref highscore: " + PlayerPrefs.GetInt("highscore"));
+            Debug.Log("currentscore: " + PlayerPrefs.GetInt("currentscore"));
+        }
+        else
+        {
+            Debug.Log("highscore: " + PlayerPrefs.GetInt("highscore"));
         }
     }
 }
