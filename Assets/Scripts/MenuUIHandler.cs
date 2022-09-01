@@ -32,6 +32,11 @@ public class MenuUIHandler : MonoBehaviour
 
     public void SetName(string username)
     {
+        if (PlayerPrefs.GetString("username") != username)
+        {
+            PlayerPrefs.SetInt("highscore", 0);
+        }
+
         HighScoreText.text = "High Score: " + username;
         PlayerPrefs.SetString("username", username);
         PlayerPrefs.Save();

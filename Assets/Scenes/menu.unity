@@ -1270,7 +1270,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HighScoreText: {fileID: 1951817054}
-  NameField: {fileID: 2001592789}
 --- !u!1 &1811800647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,10 +1459,10 @@ RectTransform:
   m_Father: {fileID: 1200781996}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 68.5}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: -868, y: -418}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1951817054
 MonoBehaviour:
@@ -1528,7 +1527,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
